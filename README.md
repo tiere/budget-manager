@@ -1,2 +1,2 @@
-# react-starter
-Template project for react applications
+# animated-octo-succotash
+A budget manager
