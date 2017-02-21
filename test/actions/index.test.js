@@ -30,13 +30,30 @@ describe("actions", () => {
       "Zxiag0FM-elneffE9FHIiV_vzMuWc6Fz_8Vmir7YHrs";
     const store = mockStore();
     const expectedActions = [
-      {"type": "SIGN_IN_REQUEST"},
-      {"type": "SIGN_IN_SUCCESS", token: expectedToken},
+      {type: "SIGN_IN_REQUEST"},
+      {type: "SIGN_IN_SUCCESS", token: expectedToken},
     ];
 
     nock(constants.API_URL)
       .post("/sign_in")
       .reply(200, {token: expectedToken});
+
+    return store.dispatch(actions.signIn("testing@example.com", "secret"))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+  });
+
+  test(".signIn with invalid credentials", () => {
+    const store = mockStore();
+    const expectedActions = [
+      {type: "SIGN_IN_REQUEST"},
+      {type: "SIGN_IN_FAILURE"},
+    ];
+
+    nock(constants.API_URL)
+      .post("/sign_in")
+      .reply(401);
 
     return store.dispatch(actions.signIn("testing@example.com", "secret"))
       .then(() => {
