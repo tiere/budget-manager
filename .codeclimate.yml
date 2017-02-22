@@ -11,7 +11,5 @@ engines:
       - javascript
   fixme:
     enabled: true
-  nodesecurity:
-    enabled: true
   scss-lint:
     enabled: true
