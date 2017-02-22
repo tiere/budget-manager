@@ -6,8 +6,9 @@ engines:
     enabled: true
   duplication:
     enabled: true
-    languages:
-    - javascript:
+    config:
+      languages:
+      - javascript
   fixme:
     enabled: true
   nodesecurity:
